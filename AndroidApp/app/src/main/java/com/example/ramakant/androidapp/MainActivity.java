@@ -13,12 +13,13 @@ import com.google.android.gms.common.SignInButton;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     SignInButton googleSignIn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        googleSignIn = (com.google.android.gms.common.SignInButton)findViewById(R.id.sign_in_button_main);
-        googleSignIn.setOnClickListener( MainActivity.this);
+        googleSignIn = (com.google.android.gms.common.SignInButton) findViewById(R.id.sign_in_button_main);
+        googleSignIn.setOnClickListener(MainActivity.this);
     }
 
     @Override
@@ -45,9 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.sign_in_button_main:
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 break;
         }
