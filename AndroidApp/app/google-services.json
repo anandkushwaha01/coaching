@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_id": "androidapp-1157",
+    "project_number": "632199753422",
+    "name": "AndroidApp"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632199753422:android:d3b66f0a1e3c4b31",
+        "client_id": "android:com.example.ramakant.androidapp",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.example.ramakant.androidapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632199753422-j0qocojtmoopu4katomjrrh6jlmft1l3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ramakant.androidapp",
+            "certificate_hash": "BBAB57501FF44CFAD2E2BD08C8AAA95577151D09"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}
