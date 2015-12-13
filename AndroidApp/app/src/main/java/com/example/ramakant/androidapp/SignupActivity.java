@@ -22,6 +22,8 @@ public class SignupActivity extends AppCompatActivity {
 
     @InjectView(R.id.input_name)
     EditText _nameText;
+    @InjectView(R.id.input_mobile)
+    EditText _mobileText;
     @InjectView(R.id.input_email)
     EditText _emailText;
     @InjectView(R.id.input_password)
@@ -70,6 +72,7 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.show();
 
         String name = _nameText.getText().toString();
+        String mobile = _mobileText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
@@ -100,12 +103,25 @@ public class SignupActivity extends AppCompatActivity {
         _signupButton.setEnabled(true);
     }
 
+    @Override
+    public void supportInvalidateOptionsMenu() {
+        super.supportInvalidateOptionsMenu();
+    }
+
     public boolean validate() {
         boolean valid = true;
 
         String name = _nameText.getText().toString();
+        String mobile = _mobileText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
+
+        if (mobile.isEmpty() || mobile.length() != 10) {
+            _mobileText.setError("Mobile No. Must Be of 10 digit");
+            valid = false;
+        } else {
+            _mobileText.setError(null);
+        }
 
         if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("at least 3 characters");
