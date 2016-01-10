@@ -10,6 +10,7 @@ import (
 )
 
 var pool *redis.Pool
+
 type RedisStorage struct {
 	pool   *redis.Pool
 	prefix string
@@ -36,58 +37,58 @@ func InitRedis(address string) (*redis.Pool, error) {
 	}
 	return pool, nil
 }
-func GetRedisPool() *redis.Pool{
+func GetRedisPool() *redis.Pool {
 	return pool
 }
 func NewRedisStorage(pool *redis.Pool, prefix string, delim string) *RedisStorage {
-   return &RedisStorage{
-     pool   :    pool,
-     prefix :    prefix + delim + "oa" + delim,
-   }
+	return &RedisStorage{
+		pool:   pool,
+		prefix: prefix + delim + "oa" + delim,
+	}
 }
 
 func (rs *RedisStorage) Get(id []byte, obj interface{}) error {
-  val, err := redis.Bytes(rs.do("GET", rs.prefixed(id)))
+	val, err := redis.Bytes(rs.do("GET", rs.prefixed(id)))
 
-  if err != nil {
-    return err
-  }
+	if err != nil {
+		return err
+	}
 
-  return json.Unmarshal(val,obj)
+	return json.Unmarshal(val, obj)
 }
 
 func (rs *RedisStorage) Set(obj interface{}, id []byte) error {
-  val, err := json.Marshal(obj)
-  if err != nil {
-    return err
-  }
+	val, err := json.Marshal(obj)
+	if err != nil {
+		return err
+	}
 
-  _, err = rs.do("SET", rs.prefixed(id), val)
-  return err
+	_, err = rs.do("SET", rs.prefixed(id), val)
+	return err
 }
 
 func (rs *RedisStorage) Del(id []byte) error {
-  _, err := rs.do("DEL", rs.prefixed(id))
-  return err
+	_, err := rs.do("DEL", rs.prefixed(id))
+	return err
 }
 
 func (rs *RedisStorage) prefixed(id []byte) []byte {
-  return append([]byte(rs.prefix), id...)
+	return append([]byte(rs.prefix), id...)
 }
 
 func (rs *RedisStorage) do(cmd string, args ...interface{}) (interface{}, error) {
-  conn := rs.pool.Get()
-  defer conn.Close()
-  return conn.Do(cmd, args...)
+	conn := rs.pool.Get()
+	defer conn.Close()
+	return conn.Do(cmd, args...)
 }
 
-func (rs *RedisStorage) SetEx(obj interface{}, id []byte, expireSeconds int) error{
-    val, err := json.Marshal(obj)
-  if err != nil {
-    return err
-  }
+func (rs *RedisStorage) SetEx(obj interface{}, id []byte, expireSeconds int) error {
+	val, err := json.Marshal(obj)
+	if err != nil {
+		return err
+	}
 
-  _, err = rs.do("SETEX", rs.prefixed(id), expireSeconds , val)
-  //_, err = rs.do("EXPIRE", rs.prefixed(id), 3600)
-  return err
+	_, err = rs.do("SETEX", rs.prefixed(id), expireSeconds, val)
+	//_, err = rs.do("EXPIRE", rs.prefixed(id), 3600)
+	return err
 }

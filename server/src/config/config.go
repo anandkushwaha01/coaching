@@ -1,14 +1,15 @@
 package config
-import(
-	"log"
+
+import (
 	"gopkg.in/gcfg.v1"
+	"log"
 )
 
 type Config struct {
-	DB         	DBCfg
-	Server     	ServerCfg
-	Base       	BaseCfg
-	Redis 		RedisCfg
+	DB     DBCfg
+	Server ServerCfg
+	Base   BaseCfg
+	Redis  RedisCfg
 }
 type DBCfg struct {
 	DSN          string
@@ -26,7 +27,7 @@ type AuthHeaderCfg struct {
 	User     string
 	Password string
 }
-type RedisCfg struct{
+type RedisCfg struct {
 	Address string
 }
 

@@ -1,46 +1,49 @@
 package session
-import(
+
+import (
+	"errors"
 	"log"
 	"net/http"
-	"errors"
 )
+
 var mgr *Manager
-func Init(){
+
+func Init() {
 	var err error
-	mgr, err = NewManager("redis","oauth", 60*60*48)
-	if err != nil{
+	mgr, err = NewManager("redis", "oauth", 60*60*48)
+	if err != nil {
 		log.Println("Error in initializing session", err)
 	}
 	log.Println("session has been initialized...")
 }
-func NewSession(w http.ResponseWriter, r *http.Request) (Session, error){
-	if mgr == nil{
+func NewSession(w http.ResponseWriter, r *http.Request) (Session, error) {
+	if mgr == nil {
 		log.Println("session is not initialized")
-		return	nil, errors.New("nil session manager")
+		return nil, errors.New("nil session manager")
 	}
 	return mgr.SessionNew(w, r), nil
 }
-func GetSession(w http.ResponseWriter, r *http.Request) (Session, error){
-	if mgr == nil{
+func GetSession(w http.ResponseWriter, r *http.Request) (Session, error) {
+	if mgr == nil {
 		log.Println("session is not initialized")
-		return	nil, errors.New("nil session manager")
+		return nil, errors.New("nil session manager")
 	}
 	return mgr.SessionStart(w, r), nil
 }
-func DeleteSession(w http.ResponseWriter, r *http.Request){
-	if mgr == nil{
+func DeleteSession(w http.ResponseWriter, r *http.Request) {
+	if mgr == nil {
 		log.Println("session is not initialized")
-		return	
+		return
 	}
-	mgr.SessionDestroy(w,r)
+	mgr.SessionDestroy(w, r)
 }
-func SaveSession(sess Session){
-	if mgr == nil{
+func SaveSession(sess Session) {
+	if mgr == nil {
 		log.Println("session is not initialized")
-		return	
+		return
 	}
 	err := mgr.provider.SessionSave(sess)
-	if err != nil{
-		log.Println("Error in saving session ",err)
+	if err != nil {
+		log.Println("Error in saving session ", err)
 	}
 }

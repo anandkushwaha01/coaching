@@ -8,12 +8,14 @@ import (
 	"log"
 	"strings"
 )
-type DBContext struct{
-	DB *sql.DB
-	SelectStmt 	map[string]*sql.Stmt
-	InsertStmt 	map[string]*sql.Stmt
-	UpdateStmt	map[string]*sql.Stmt
+
+type DBContext struct {
+	DB         *sql.DB
+	SelectStmt map[string]*sql.Stmt
+	InsertStmt map[string]*sql.Stmt
+	UpdateStmt map[string]*sql.Stmt
 }
+
 func Dbconnect(dsn string, min int, max int) (*DBContext, error) {
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
@@ -30,20 +32,20 @@ func Dbconnect(dsn string, min int, max int) (*DBContext, error) {
 
 	return db_cntx, err
 }
-func (db *DBContext) ExecutePreparedSelectStatement(table string, filters map[string]string, cols []string) (result []map[string]string, db_error error){
-	prepared_stmt_key := table+"_"
-	if len(cols) > 0{
+func (db *DBContext) ExecutePreparedSelectStatement(table string, filters map[string]string, cols []string) (result []map[string]string, db_error error) {
+	prepared_stmt_key := table + "_"
+	if len(cols) > 0 {
 		prepared_stmt_key += strings.Join(cols, "_") + "_"
 	}
 	var args []interface{}
-	for k, v := range filters{
-		prepared_stmt_key += k+"_"
+	for k, v := range filters {
+		prepared_stmt_key += k + "_"
 		args = append(args, v)
 	}
 	prepared_stmt_key = strings.Trim(prepared_stmt_key, "_")
-	if stmt, ok := db.SelectStmt[prepared_stmt_key]; ok{
+	if stmt, ok := db.SelectStmt[prepared_stmt_key]; ok {
 		res, err := stmt.Query(args...)
-		if err != nil{
+		if err != nil {
 			log.Println("DB Error: error in executing statement. ", err)
 			db_error = err
 			return
@@ -76,22 +78,22 @@ func (db *DBContext) ExecutePreparedSelectStatement(table string, filters map[st
 			}
 			result = append(result, new_row)
 		}
-	}else{
+	} else {
 		log.Println("statement does not exist for the query: ", prepared_stmt_key)
 		db_error = errors.New("statement does not exist for the query..." + prepared_stmt_key)
-		return 
+		return
 	}
 	return
 }
 
 func (db *DBContext) DbSelect(table string, filters map[string]string, columns []string) (result []map[string]string, db_error error) {
 	var query, all_col string
-	temp , err := db.ExecutePreparedSelectStatement(table, filters, columns)
-	if err == nil{
+	temp, err := db.ExecutePreparedSelectStatement(table, filters, columns)
+	if err == nil {
 		log.Println("result is fetched from prepared statment.  ")
 		return temp, nil
 	}
-	
+
 	log.Println("fetching result using db connection...")
 	if len(columns) == 0 {
 		all_col = "*"
@@ -109,7 +111,7 @@ func (db *DBContext) DbSelect(table string, filters map[string]string, columns [
 
 	query = fmt.Sprintf("select %s from %s where %s ", all_col, table, strings.Join(where_keys, " and "))
 	log.Println("query:", query, args)
-	
+
 	rows, err := db.DB.Query(query, args...)
 
 	if err != nil {
@@ -168,17 +170,17 @@ func (db *DBContext) DbInsert(table string, values map[string]interface{}) (resu
 		return
 	}
 	query = query + " (" + strings.Join(columns, ",") + ") values ( " + strings.Join(args, ",") + " )"
-	log.Println("Query: ", query, " Args: ",args_value)
+	log.Println("Query: ", query, " Args: ", args_value)
 	//log.Println(query, args_value)
 	stmt, err := db.DB.Prepare(query)
-	if err != nil{
+	if err != nil {
 		log.Println("DB Error: error in preparing statement. ", err)
 		db_error = err
-		return 
+		return
 	}
 	defer stmt.Close()
 	result, db_error = stmt.Exec(args_value...)
-	if err != nil{
+	if err != nil {
 		log.Println("DB Error: error in executing statement. ", err)
 	}
 	return
@@ -190,34 +192,34 @@ func (db *DBContext) DbUpdate(table string, filters map[string]string, values ma
 	var where_keys []string
 
 	for col := range values {
-		query = query + col+"=?, "
+		query = query + col + "=?, "
 		args = append(args, values[col])
 	}
 	query = strings.Trim(query, ", ")
-	log.Println("Query: ", query, " Args: ",args)
-	
+	log.Println("Query: ", query, " Args: ", args)
+
 	for k, v := range filters {
 		where_keys = append(where_keys, fmt.Sprintf(" %s = ? ", k))
 		args = append(args, v)
 	}
-	if len(where_keys) <= 0{
+	if len(where_keys) <= 0 {
 		log.Println("DB Error: where clause is compulsory")
 		db_error = errors.New("where clause is compulsory in select query")
 		return
 	}
 	where_clause := strings.Join(where_keys, " and ")
 	query = query + " where " + where_clause
-	log.Println("Query: ", query, " Args: ",args)
+	log.Println("Query: ", query, " Args: ", args)
 
 	stmt, err := db.DB.Prepare(query)
-	if err != nil{
+	if err != nil {
 		log.Println("DB Error: error in preparing statement. ", err)
 		db_error = err
-		return 
+		return
 	}
 	defer stmt.Close()
 	result, db_error = stmt.Exec(args...)
-	if err != nil{
+	if err != nil {
 		log.Println("DB Error: error in executing statement. ", err)
 	}
 	return

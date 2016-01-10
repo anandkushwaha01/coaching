@@ -1,14 +1,16 @@
 package oauth
-import(
-	"log"
-	"net/http"
+
+import (
 	"concept-build/server/src/config"
 	"encoding/json"
+	"log"
+	"net/http"
 )
-type UserData struct{
-	name string
-	email string
-	phno string
+
+type UserData struct {
+	name     string
+	email    string
+	phno     string
 	password string
 }
 
@@ -30,7 +32,7 @@ func GetSignupHandler(cfg *config.Config) http.HandlerFunc {
 			}
 		}()
 		//TODO
-		resp["code"]=200
-		return 
+		resp["code"] = 200
+		return
 	}
 }
