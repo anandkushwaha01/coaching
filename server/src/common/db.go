@@ -16,7 +16,8 @@ type DBContext struct {
 	UpdateStmt map[string]*sql.Stmt
 }
 
-func Dbconnect(dsn string, min int, max int) (*DBContext, error) {
+func Dbconnect(dsn string, maxIdle int, maxOpen int) (*DBContext, error) {
+	
 	db, err := sql.Open("mysql", dsn)
 	if err != nil {
 		log.Println("Error in DB connection.", err)
@@ -27,12 +28,12 @@ func Dbconnect(dsn string, min int, max int) (*DBContext, error) {
 	db_cntx := &DBContext{
 		DB: db,
 	}
-	db.SetMaxOpenConns(max)
-	db.SetMaxIdleConns(min)
+	db.SetMaxOpenConns(maxOpen)
+	db.SetMaxIdleConns(maxIdle)
 
 	return db_cntx, err
 }
-func (db *DBContext) ExecutePreparedSelectStatement(table string, filters map[string]string, cols []string) (result []map[string]string, db_error error) {
+func (db *DBContext) ExecutePreparedSelectStatement(table string, filters map[string]interface{}, cols []string) (result []map[string]string, db_error error) {
 	prepared_stmt_key := table + "_"
 	if len(cols) > 0 {
 		prepared_stmt_key += strings.Join(cols, "_") + "_"
@@ -86,7 +87,7 @@ func (db *DBContext) ExecutePreparedSelectStatement(table string, filters map[st
 	return
 }
 
-func (db *DBContext) DbSelect(table string, filters map[string]string, columns []string) (result []map[string]string, db_error error) {
+func (db *DBContext) DbSelect(table string, filters map[string]interface{}, columns []string) (result []map[string]string, db_error error) {
 	var query, all_col string
 	temp, err := db.ExecutePreparedSelectStatement(table, filters, columns)
 	if err == nil {

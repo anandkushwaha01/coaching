@@ -6,16 +6,27 @@ import (
 )
 
 type Config struct {
-	DB     DBCfg
+	Oauth  OauthCfg
+	User   UserCfg
 	Server ServerCfg
 	Base   BaseCfg
 	Redis  RedisCfg
+	Smtp 	SmtpCfg
+}
+type SmtpCfg struct{
+	Address string
 }
 type DBCfg struct {
 	DSN          string
 	MaxIdleConns int
 	MaxOpenConns int
 	Querylog     bool
+}
+type OauthCfg struct{
+	DBCfg
+}
+type UserCfg struct{
+	DBCfg
 }
 type ServerCfg struct {
 	Port string
