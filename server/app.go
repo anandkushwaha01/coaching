@@ -6,11 +6,11 @@ import (
 	"github.com/paytm/logging"
 	"log"
 	"net/http"
-	"concept-build/server/src/oauth"
-	"concept-build/server/src/user"
-	"concept-build/server/src/common"
-	"concept-build/server/src/session"
-	"concept-build/server/src/config"
+	"build-concept/server/src/oauth"
+	"build-concept/server/src/user"
+	"build-concept/server/src/common"
+	"build-concept/server/src/session"
+	"build-concept/server/src/config"
 )
 
 func main() {
@@ -40,6 +40,7 @@ func main() {
 	session.ProviderInit(pool)
 	session.Init()
 	
+	http.Handle("/home", user.GetHomeHandler(&cfg))
 	http.Handle("/login", oauth.GetLoginHandler(&cfg))
 	http.Handle("/logout", oauth.GetLogoutHandler(&cfg))
 	http.Handle("/signup", oauth.GetSignupHandler(&cfg))

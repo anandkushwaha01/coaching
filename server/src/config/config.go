@@ -43,7 +43,7 @@ type RedisCfg struct {
 }
 
 func ReadConfig(cfg *Config, path string) bool {
-	err := gcfg.ReadFileInto(cfg, path+"/concept-build.conf")
+	err := gcfg.ReadFileInto(cfg, path+"/build-concept.conf")
 	if err == nil {
 		return true
 	}

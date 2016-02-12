@@ -1,7 +1,7 @@
 package session
 
 import (
-	"concept-build/server/src/common"
+	"build-concept/server/src/common"
 	"errors"
 	"github.com/garyburd/redigo/redis"
 	"log"

@@ -1,0 +1,244 @@
+<html lang="en" dir="ltr">
+   <head>
+      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+      <meta charset="utf-8">
+      <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width">
+      <meta name="format-detection" content="email=no">
+      <!--[if lt IE 9]>
+      <script src="https://persona.paytm.com/v/4b0d630691/production/html5shim.js"></script>
+      <![endif]-->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+        <link rel="icon" type="image/gif" href="/views/images/favicon_tile.ico">
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/redmond/jquery-ui.css" rel="stylesheet" type="text/css"/>
+      <!--[if lt IE 9]>
+      <link href="https://persona.paytm.com/v/8d1247ab26/production/ie8_main.css" rel="stylesheet" type="text/css">
+      <![endif]-->
+      <style type="text/css"></style>
+      <link rel="shortcut icon" href="/views/images/favicon.ico">
+      <title>Build-Concept</title>
+   </head>
+   <body>
+		<div>
+			<div class="row valign-wrapper">
+				<div class="col s12">
+					<h5 class="valign center-align"> Build Concept</h5>
+					<p class="center-align">Best coaching center for 6th, 7th and 8th standard</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12">
+					 <ul class="tabs grey lighten-3">
+				        <li class="tab col s1"><a href="#Home" class="active">Home</a></li>
+				        <li class="tab col s1"><a href="#Admission">Admission</a></li>
+				        <li class="tab col s1"><a href="#FeeStructure">Fee</a></li>
+				        <li class="tab col s1"><a href="#Demos">Demos</a></li>
+				        <li class="tab col s1"><a href="#Quiz">Quiz</a></li>
+				        <li class="tab col s1"><a href="#Results">Results</a></li>
+				        <li class="tab col s1"><a href="#Contactus">Contact us</a></li>
+				        <li class="tab col s1"><a href="#Aboutus">About us</a></li>
+				        <li class="tab col s1"><a href="#formPopup" class="modal-trigger">Signin/Signup</a></li>
+				      </ul>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div id="Home" class="col s8 offset-s2">
+						<p>
+							Home.
+						</p>
+					</div>
+					<div id="Admission" class="col s8 offset-s2">
+						<p>
+							Register here.
+						</p>
+					</div>
+					<div id="FeeStructure" class="col s8 offset-s2">
+						<p>
+							check the fee structure.
+						</p>
+					</div>
+					<div id="Demos" class="col s8 offset-s2">
+						<p>
+							please take a look of our classes.
+						</p>
+					</div>
+					<div id="Quiz" class="col s8 offset-s2">
+						<p>
+							Give your best in the quiz.	
+						</p>
+					</div>
+					<div id="Results" class="col s8 offset-s2">
+						<p>
+							Once you register with us, we will publish your results to make you better.
+						</p>
+					</div>
+					<div id="Contactus" class="col s8 offset-s2">
+						<p>
+							Anand Kumar Kushwaha <br>
+							Contact: +9178095866096
+						</p>
+					</div>
+					<div id="Aboutus" class="col s8 offset-s2">
+						<p>
+							We are the best.
+						</p>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<div id="formPopup" class="modal modal-fixed-footer">
+			<ul class="tabs grey lighten-3">
+		        <li class="tab col s1"><a href="#Signin" class="active" id="SigninTab">Signin</a></li>
+		        <li class="tab col s1"><a href="#Signup" id="SignupTab">Signup</a></li>
+		    </ul>
+		    <div class="modal-content">
+		    	<div id="Signin">
+		    		<label id="signinErrorMsg" class="red-text"></label>
+				    <form class="col s12" method="post" action="http://localhost:9096/login" id="SigninForm">
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input id="username" type="email" class="validate">
+				          <label for="username">Email</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input id="password" type="password" class="validate">
+				          <label for="password">Password</label>
+				        </div>
+				      </div>  
+				    </form>
+				</div>
+				<div id="Signup">
+					<label id="signupErrorMsg" class="red-text"></label>
+				    <form class="col s12" action="/signup" id="SignupForm">
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input id="first_name" type="text" pattern="[A-Za-z]{3,30}" class="validate">
+				          <label for="first_name" data-error="invalid name">First Name</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input id="last_name" type="text" pattern="[A-Za-z]{3,30}" class="validate" required>
+				          <label for="last_name" data-error="invalid name">Last Name</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input id="city" type="text" pattern="[A-Za-z]{3,30}" class="validate" required>
+				          <label for="city" data-error="invlaid city name">City</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input id="phno" type="tel" class="validate" pattern="^[789]\d{9}$" required>
+				          <label for="phono" data-error="phone number must have only 10 digit (std code not allowed)">Phone no</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input id="email" type="email" class="validate">
+				          <label for="email" data-error="invalid email">Email</label>
+				        </div>
+				      </div>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input id="password" type="password" class="validate" pattern=".{4,}" >
+				          <label for="password" data-error="password lenght cannnot be less that 4">Password</label>
+				        </div>
+				      </div>
+				    </form>
+				</div>
+		    </div>
+		    <div class="modal-footer">
+		      <a href="#!" class="modal-action waves-effect waves-green btn-flat " id="submitBtn">Submit</a>
+		    </div>
+		</div>
+		<div id="success" class="modal">
+			<div class="modal-content">
+				<p id="successMsg" class="center-align"></p>
+			</div>
+			<div class="modal-footer">
+				<a href="/home" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+		<div id="errorDiv" class="modal" style="width:30%; hight 20%;">
+			<div class="modal-content">
+				<p class="red-text center-align" id="errorMsg"></p>
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+			</div>
+		</div>
+		<script type="text/javascript">
+			 $(document).ready(function(){
+			    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+			    $('.modal-trigger').leanModal();
+			  });
+			 $("#submitBtn").click(function(){
+			 	console.log($( "#SigninTab" ).hasClass( "active" ));
+			 	if ($( "#SigninTab" ).hasClass( "active" ) == true){
+		 			console.log("signing in...");
+		 			console.log($("#username").val());
+		 			$.ajax({
+			            url: "http://localhost:9096/login" ,
+			            method :"POST",
+			            data : {
+			              username: $("#username").val(),
+			              password: $("#password").val()
+			            }
+			        }).done(function(data, textStatus, jqXHR){
+			        	console.log("login success...");
+			        	console.log(data);
+			          	$('#formPopup').closeModal();
+			          	location.reload();
+			        }).error(function(er){
+			        	console.log("login failed...")
+			        	console.log(er);
+			        	$('#signinErrorMsg').text(er.responseText);
+			        	// $('#errorMsg').text(er.responseText);
+			        	// $('#errorDiv').openModal();
+			        });
+		 			console.log("signing in completed...");
+			        return false;
+			 	}
+			 	if ($( "#SignupTab" ).hasClass( "active" ) == true){
+		 			console.log("signing up...");
+		 			console.log($("#username").val());
+		 			$.ajax({
+			            url: 			"http://localhost:9096/signup" ,
+			            method : 		"POST",
+			            contentType: 	"application/json; charset=utf-8",
+			            dataType: 		"json",
+			            data : JSON.stringify({
+			              first_name: 	$("#first_name").val(),
+			              last_name: 	$("#last_name").val(),
+			              city: 		$("#city").val(),
+			              phno: 		$("#phno").val(),
+			              email: 		$("#email").val(),
+			              password: 	$("#password").val()
+			            })
+			        }).done(function(data){
+			        	$('#formPopup').closeModal();
+			        	$('#successMsg').text("congratulations!! your account has been created. please verify the link for login");
+			        	$('#success').openModal();
+			          	console.log(data);
+			        }).error(function(er){
+			        	console.log(er);
+			        	$('#signupErrorMsg').text(er.responseText);
+			        	// $('#errorMsg').text(er.responseText);
+			        	// $('#errorDiv').openModal();
+			        });
+			        return false;
+		 			console.log("signing in completed...");
+			 	}
+
+			 	
+			 });
+		</script>
+   </body>
+</html>

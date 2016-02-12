@@ -3,11 +3,11 @@ import(
 	"errors"
 )
 const(
-	ERROR_TYPE_DB int = 201+iota
-	ERROR_TYPE_OAUTH int = 250
-	ERROR_TYPE_COMMON int = 350
-	ERROR_TYPE_CLIENT int = 501
-	ERROR_TYPE_SESSION int = 701
+	ERROR_TYPE_DB int = 700+iota
+	ERROR_TYPE_OAUTH int =751
+	ERROR_TYPE_COMMON int = 851
+	ERROR_TYPE_CLIENT int = 901
+	ERROR_TYPE_SESSION int = 1001
 )
 const(
 	DB_ERROR_NO_CONNECTION int = ERROR_TYPE_DB + iota
@@ -40,6 +40,7 @@ const(
 	ERROR_INVALID_VERIFICATION_LINK
 	ERROR_JSON_BODY_NOT_READABLE
 	ERROR_JSON_BODY_NOT_PARSABLE
+	ERROR_TEMPLATE_IS_NULL
 )
 
 var ErrorMsgMap map[int]string
@@ -83,4 +84,5 @@ func InitError(){
 	ErrorMsgMap[ERROR_INVALID_METHOD_TYPE]="invlaid method type"
 	ErrorMsgMap[ERROR_INVALID_CONTENT_TYPE]="invalid content type"
 	ErrorMsgMap[ERROR_INVALID_REDIRECT_URI]="invalid redirect uri."
+	ErrorMsgMap[ERROR_TEMPLATE_IS_NULL]="internal error"
 }

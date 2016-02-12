@@ -1,8 +1,8 @@
 package oauth
 
 import (
-	"concept-build/server/src/config"
-	"concept-build/server/src/common"
+	"build-concept/server/src/config"
+	"build-concept/server/src/common"
 	"log"
 	"net/http"
 	"strconv"

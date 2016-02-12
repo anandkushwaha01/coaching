@@ -1,9 +1,9 @@
 package oauth
 
 import (
-	"concept-build/server/src/config"
-	"concept-build/server/src/session"
-	"concept-build/server/src/common"
+	"build-concept/server/src/config"
+	"build-concept/server/src/session"
+	"build-concept/server/src/common"
 	"encoding/json"
 	"log"
 	"net/http"
@@ -67,6 +67,7 @@ func Authorize(username, password string) (fn_err common.AppError){
 
 func GetLoginHandler(cfg *config.Config) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		log.Println("login called...")
 		resp := common.NewResponse()
 		fn_err := common.ParseFormRequest(r)
 		if fn_err.Code != 200{

@@ -2,8 +2,8 @@ package oauth
 import(
 	"log"
 	"errors"
-	"concept-build/server/src/config"
-	"concept-build/server/src/common"
+	"build-concept/server/src/config"
+	"build-concept/server/src/common"
 	"golang.org/x/crypto/scrypt"
 	"github.com/pborman/uuid"
 	"encoding/base64"

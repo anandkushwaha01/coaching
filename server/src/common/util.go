@@ -9,7 +9,7 @@ import (
 	"crypto/rand"
 	"fmt"
 	"html/template"
-	"concept-build/server/src/config"
+	"build-concept/server/src/config"
 )
 func GenSecret() (string, error) {
 	c := 24
